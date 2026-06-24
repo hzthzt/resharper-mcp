@@ -68,6 +68,9 @@ namespace ReSharperMcp
             RegisterTool(new GenerateMembersTool(solution), shellLocks, solution, tools, handlers);
             RegisterTool(new CompleteAtTool(solution), shellLocks, solution, tools, handlers);
 
+            // File-wide scoped quick-fix application (v0.10.0)
+            RegisterTool(new ApplySuggestionsTool(solution), shellLocks, solution, tools, handlers);
+
             _shellComponent.RegisterSolution(solutionName, _solutionPath, tools, handlers);
 
             lifetime.OnTermination(this);

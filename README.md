@@ -35,6 +35,7 @@ Write tools (modify source — require a write lock):
 | `rename_symbol` | Semantic, solution-wide rename of a symbol and all its references (supports `dryRun`) |
 | `generate_members` | Generate members on a type (constructors, overrides, equality members, etc.) |
 | `apply_quick_fix` | Apply a ReSharper quick-fix (bulb action) at a position |
+| `apply_suggestions` | Apply inspection quick-fixes file-wide by inspection id (e.g. convert explicit constructor → primary constructor); position-free, `dryRun`/`all` supported |
 
 ### Symbol resolution
 

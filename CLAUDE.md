@@ -85,6 +85,7 @@ Write tools (dispatched on the R# main thread under a write lock — see `IMcpWr
 | `rename_symbol` | `IMcpSelfTransactingWriteTool` | Semantic solution-wide rename via `RenameRefactoring`; manages its own transaction to support `dryRun` rollback |
 | `generate_members` | `IMcpWriteTool` | Generate members via `GeneratorWorkflowFactory`; relies on the framework's auto-commit transaction |
 | `apply_quick_fix` | `IMcpSelfTransactingWriteTool` | Apply a bulb action via `BulbActionExecutor` (which self-transacts) |
+| `apply_suggestions` | `IMcpSelfTransactingWriteTool` | Apply scoped quick-fixes file-wide by inspection id via `IModernManualScopedAction.ExecuteAction` (ReSharper's "Fix all in file" engine); complements position-based `apply_quick_fix` |
 
 > `complete_at` is logically read-only but implements `IMcpSelfTransactingWriteTool` solely to obtain main-thread dispatch (the completion engine asserts the R# main thread); it performs no writes.
 
