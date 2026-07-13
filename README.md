@@ -1,5 +1,7 @@
 # ReSharper MCP Server
 
+**English** | [简体中文](README.zh-CN.md)
+
 An MCP (Model Context Protocol) server that runs inside the ReSharper/Rider backend process, exposing code intelligence features to AI assistants via HTTP.
 
 Supports C#, F#, VB, and any language with a ReSharper PSI implementation.
