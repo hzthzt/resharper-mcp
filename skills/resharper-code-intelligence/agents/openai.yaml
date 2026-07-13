@@ -1,0 +1,7 @@
+interface:
+  display_name: "ReSharper Code Intelligence"
+  short_description: "Progressive ReSharper semantics for Rider projects"
+  default_prompt: "Use $resharper-code-intelligence to inspect this solution with Rider ReSharper semantics."
+
+policy:
+  allow_implicit_invocation: true

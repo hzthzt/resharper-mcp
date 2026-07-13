@@ -90,6 +90,40 @@ The server starts automatically when you open a solution in Rider.
 
 Set `RESHARPER_MCP_PORT` environment variable to override the default port.
 
+## Codex Skill (progressive disclosure)
+
+This repository also provides the `resharper-code-intelligence` Codex Skill. It calls the same local Rider endpoint through a bundled Node.js client, but reveals a tool schema only when the Skill selects that tool. Codex does not need to register all 23 ReSharper tools at session startup.
+
+Prerequisites:
+
+- Install this Rider plugin and open a solution.
+- Install Node.js 18 or newer.
+- Keep the endpoint on `http://127.0.0.1:23741/`, or set `RESHARPER_MCP_URL`.
+
+Ask Codex to install the Skill from GitHub:
+
+```text
+Use $skill-installer to install skills/resharper-code-intelligence from hzthzt/resharper-mcp.
+```
+
+To avoid loading the native MCP catalog alongside the Skill, disable (or remove) the direct Codex MCP entry:
+
+```toml
+[mcp_servers.resharper]
+url = "http://127.0.0.1:23741/"
+enabled = false
+```
+
+The Skill first checks Rider and the open solutions, loads only the relevant navigation, diagnostics, or refactoring guidance, fetches the selected tool schema, and then calls it. Source-changing tools require an explicit `--apply`; tools with native dry-run support preview by default.
+
+Run the client directly when troubleshooting:
+
+```bash
+node skills/resharper-code-intelligence/scripts/resharper-mcp-client.mjs status
+node skills/resharper-code-intelligence/scripts/resharper-mcp-client.mjs solutions
+node skills/resharper-code-intelligence/scripts/resharper-mcp-client.mjs schema find_usages
+```
+
 ## Building
 
 ```bash
